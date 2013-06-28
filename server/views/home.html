@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<script src="components/jquery/jquery.js"></script>
+<script src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<h1>{{ title }}</h1>
+
+<div>
+    <ul>
+        <li><a href="/login">login</a></li>
+        <li><a href="/logout">logout</a></li>
+    </ul>
+</div>
+<p>
+    Welcome to {{ title }}
+</p>
+
+{% endblock %}
