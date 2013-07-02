@@ -1,3 +1,13 @@
+var users = require('./users'),
+    projects = require('./projects'),
+    tasks = require('./tasks'),
+    comments = require('./comments');
+
+exports.projects = projects;
+exports.tasks = tasks;
+exports.comments = comments;
+exports.users = users;
+    
 exports.index = function (req, res) {
     res.render('index', {
         title: 'Qanban - Welcome'
