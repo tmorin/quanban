@@ -17,19 +17,20 @@
     <body>
         <div class="navbar">
             <div class="navbar-inner">
-                <a class="brand" href="#">{{ quanban }}</a>
+                <a class="brand" href="/">quanban</a>
                 <ul class="nav">
-                    <li><a href="#">Welcome page</a></li>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/app">App</a></li>
+                </ul>
+                {{ passport }}
+                {{ passport.user }}
+                <ul class="nav pull-right">
+                    {% if passport.user %}
+                    <li><a href="/logout">logout</a></li>
+                    {% else %}
+                    <li><a href="/login">login</a></li>
+                    {% endif %}
                 </ul>
             </div>
-        </div>
-
-        <div>
-            <ul>
-                <li><a href="/login">login</a></li>
-                <li><a href="/logout">logout</a></li>
-            </ul>
         </div>
 
         {% block body %}{% endblock %}

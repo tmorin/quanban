@@ -5,9 +5,9 @@ var uuid = require('node-uuid'),
     events = require('./events'),
     comments = require('./comments'),
 
-    KanbanSchema, Kanban;
+    TaskSchema, Task;
 
-KanbanSchema = exports.KanbanSchema = new Schema({
+TaskSchema = exports.TaskSchema = new Schema({
     _id: {
         type: String,
         default: uuid.v4
@@ -46,4 +46,4 @@ KanbanSchema = exports.KanbanSchema = new Schema({
     }
 });
 
-Kanban = exports.Kanban = mongoose.model('Kanban', KanbanSchema);
+Task = exports.Task = mongoose.model('Task', TaskSchema);

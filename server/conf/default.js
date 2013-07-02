@@ -6,8 +6,8 @@ module.exports.db = {
 
 module.exports.passport = {
     google: {
-        returnURL: 'http://www.example.com/auth/google/return',
-        realm: 'http://www.example.com/'
+        returnURL: 'http://localhost:3000/auth/google/return',
+        realm: 'http://localhost:3000/'
     }
 };
 

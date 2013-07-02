@@ -1,6 +1,8 @@
 var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var CommentSchema = require('./comments').CommentSchema;
+var EventSchema = require('./events').EventSchema;
 
 var ProjectSchema, Project;
 
@@ -19,6 +21,11 @@ ProjectSchema = exports.ProjectSchema = new Schema({
         ref: 'User',
         required: true
     },
+    owner: {
+        type: String,
+        ref: 'User',
+        required: true
+    },
     members: [{
         user: {
             type: String,
@@ -27,6 +34,8 @@ ProjectSchema = exports.ProjectSchema = new Schema({
         },
         roles: [String]
     }],
+    comments: [CommentSchema],
+    events: [EventSchema],
     created: {
         type: Date,
         default: Date.now

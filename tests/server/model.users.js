@@ -11,12 +11,13 @@ describe('users model', function () {
         user1 = new User({
             username: 'user1',
             email: 'user1@email.com',
-            accounts: [{
+            oauth: {
                 provider: 'google',
+                identifier: 'google-user2',
                 meta: {
                     token: 'atoken'
                 }
-            }]
+            }
         });
         done();
     });
@@ -27,12 +28,13 @@ describe('users model', function () {
             var user = new User({
                 username: 'user2',
                 email: 'user2@email.com',
-                accounts: [{
+                oauth: {
                     provider: 'google',
+                    identifier: 'google-user2',
                     meta: {
                         token: 'atoken'
                     }
-                }]
+                }
             });
             done();
         });

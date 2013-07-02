@@ -11,13 +11,12 @@ exports.login = function (req, res) {
 };
 
 exports.logout = function (req, res) {
-    req.session = null;
+    req.logout();
     res.redirect('/');
 };
 
-exports.home = function (req, res) {
-    console.log(req.session);
-    res.render('home', {
-        title: 'Qanban - Home'
+exports.app = function (req, res) {
+    res.render('app', {
+        title: 'Qanban - App'
     });
 };

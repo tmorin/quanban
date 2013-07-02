@@ -14,8 +14,7 @@ var server = require('http').createServer(app),
 
 var app = express();
 
-// NOTE: Swig requires some extra setup
-// This helps it know where to look for includes and parent templates
+// Swig configuration
 swig.init({
     root: __dirname + '/views',
     allowErrors: true,
@@ -80,11 +79,15 @@ mongoose.connection.on('error', function (err) {
 function requireLogin(req, res, next) {
     console.log('requireLogin', req.session);
     if (req.session.passport.user) {
-         // allow the next route to run
+        res.locals.passport = passport.user;
+        console.log('requireLogin', 'passport.user', res.locals.user);
         next();
     } else {
-        // require the user to log in
-        res.redirect(403, '/login'); // or render a form, etc.
+        if (req.is('json')) {
+            res.send(403);
+        } else {
+            res.redirect('/login');
+        }
     }
 }
 
@@ -97,13 +100,13 @@ app.all("/api/*", requireLogin, function(req, res, next) {
 app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/logout', routes.logout);
-app.get('/home', requireLogin, routes.home);
+app.get('/app', requireLogin, routes.app);
 
 // Google provider
 passport.use(require('./passport/google').strategy);
 app.get('/auth/google', passport.authenticate('google'));
 app.get('/auth/google/return', passport.authenticate('google', {
-    successRedirect: '/home',
+    successRedirect: '/app',
     failureRedirect: '/login'
 }));
 
@@ -118,7 +121,7 @@ http.createServer(app).listen(app.get('port'), function () {
 io.sockets.on('connection', function (socket) {
 
     socket.on('my other event', function (data) {
-        console.log(data);
+        //console.log(data);
     });
 
 });

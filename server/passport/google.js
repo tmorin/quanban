@@ -4,7 +4,8 @@ var U = require('underscore'),
     usersRepo = require('../model/usersRepo');
 
 function googleCallback(identifier, profile, done) {
-    console.log('GoogleStrategy', identifier, profile);
+    console.log('GoogleStrategy', 'identifier', identifier);
+    console.log('GoogleStrategy', 'profile', profile);
     var email = U.first(profile.emails) || {};
     usersRepo.findOrCreate({
         provider: 'google',
