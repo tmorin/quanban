@@ -6,7 +6,7 @@ var Q = require('q'),
 function findById(project, taskId) {
     var d, t;
     d = Q.defer();
-    t = project.tasks.get(taskId);
+    t = project.tasks.id(taskId);
     if (t) {
         d.resolve(t);
     } else {
@@ -16,6 +16,7 @@ function findById(project, taskId) {
 }
 
 function save(project, task) {
+    project.tasks.push(task);
 }
 
 function remove(project, taskId) {

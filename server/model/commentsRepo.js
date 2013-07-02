@@ -2,10 +2,10 @@ var Q = require('q'),
     comments = require('../../server/model/comments'),
     Comment = comments.Comment;
 
-function findById(project, commentId) {
+function findById(task, commentId) {
     var d, t;
     d = Q.defer();
-    t = project.comments.get(commentId);
+    t = task.comments.id(commentId);
     if (t) {
         d.resolve(t);
     } else {

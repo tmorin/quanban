@@ -1,7 +1,7 @@
 var uuid = require('node-uuid');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var CommentSchema = require('./comments').CommentSchema;
+var TaskSchema = require('./tasks').TaskSchema;
 var EventSchema = require('./events').EventSchema;
 
 var ProjectSchema, Project;
@@ -35,6 +35,9 @@ ProjectSchema = exports.ProjectSchema = new Schema({
         roles: [String]
     }],
     events: [EventSchema],
+    eventsCnt: Number,
+    tasks: [TaskSchema],
+    tasksCnt: Number,
     created: {
         type: Date,
         default: Date.now
@@ -48,5 +51,32 @@ ProjectSchema = exports.ProjectSchema = new Schema({
         default: true
     }
 });
+
+// Task management
+
+ProjectSchema.methods.addNewTask = function (data) {
+    var task = this.tasks.create(data);
+    this.tasks.addToSet(task);
+}
+
+ProjectSchema.methods.getTask = function (taskId) {
+    this.tasks.id(taskId);
+}
+
+ProjectSchema.methods.updateTask = function (taskId, data) {
+    var task = this.tasks.id(taskId);
+    task.set(data);
+}
+
+ProjectSchema.methods.removeTask = function (taskId) {
+    this.tasks.remove({ _id: taskId });
+}
+
+// Task management
+
+ProjectSchema.methods.addNewEvent = function (data) {
+    var event = this.events.create(data);
+    this.tasks.addToSet(event);
+}
 
 Project = exports.Project = mongoose.model('Project', ProjectSchema);
