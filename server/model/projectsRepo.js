@@ -33,11 +33,19 @@ function listFromMember(userId) {
     });
 }
 
+function listEventsFrom(projectId, from) {
+    // TODO: not tested
+    return findById(projectId).then(function (project) {
+        return project.events;
+    });
+}
+
 module.exports = {
     findById: findById,
     save: save,
     remove: remove,
     listFromCreator: listFromCreator,
     listFromOwner: listFromOwner,
-    listFromMember: listFromMember
+    listFromMember: listFromMember,
+    listEventsFrom: listEventsFrom
 }

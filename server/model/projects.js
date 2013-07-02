@@ -34,7 +34,6 @@ ProjectSchema = exports.ProjectSchema = new Schema({
         },
         roles: [String]
     }],
-    comments: [CommentSchema],
     events: [EventSchema],
     created: {
         type: Date,

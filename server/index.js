@@ -9,6 +9,7 @@ var server = require('http').createServer(app),
     cons = require('consolidate'),
     swig = require('swig'),
     routes = require('./routes'),
+    usersRoutes = require('./routes/users'),
     conf = require('./conf'),
     usersRepo = require('./model/usersRepo');
 
@@ -109,6 +110,31 @@ app.get('/auth/google/return', passport.authenticate('google', {
     successRedirect: '/app',
     failureRedirect: '/login'
 }));
+
+app.get('/api/users/:userId', routes.users.get);
+app.get('/api/users/:userId/projects', routes.users.projects.get);
+app.get('/api/users/:userId', routes.users.update);
+app.get('/api/users/:userId', routes.users.delete);
+
+app.get('/api/projects', routes.projects.list);
+app.get('/api/projects/:projectId', routes.projects.get);
+app.post('/api/projects', routes.projects.create);
+app.put('/api/projects/:projectId', routes.projects.update);
+app.delete('/api/projects/:projectId', routes.projects.delete);
+app.get('/api/projects/:projectId/events', routes.projects.events.list);
+
+app.get('/api/projects/:projectId/tasks', routes.tasks.list);
+app.get('/api/projects/:projectId/tasks/:taskId', routes.tasks.get);
+app.post('/api/projects/:projectId/tasks', routes.tasks.create);
+app.put('/api/projects/:projectId/tasks/:taskId', routes.tasks.update);
+app.delete('/api/projects/:projectId/tasks/:taskId', routes.tasks.delete);
+app.get('/api/projects/:projectId/tasks/:taskId/events', routes.tasks.events.list);
+
+app.get('/api/projects/:projectId/tasks/:taskId/comments', routes.comments.list);
+app.get('/api/projects/:projectId/tasks/:taskId/comments/:commentId', routes.comments.get);
+app.post('/api/projects/:projectId/tasks/:taskId/comments', routes.comments.create);
+app.put('/api/projects/:projectId/tasks/:taskId/comments/:commentId', routes.comments.update);
+app.delete('/api/projects/:projectId/tasks/:taskId/comments/:commentId', routes.comments.delete);
 
 // HTTP SERVER
 
