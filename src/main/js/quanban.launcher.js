@@ -40,8 +40,7 @@
         'quanban/repos/localstorage',
         'quanban/settings',
         'quanban/svc'
-    ],
-    urlArgs: '${project.version}'
+    ]
 });
 
 require([
