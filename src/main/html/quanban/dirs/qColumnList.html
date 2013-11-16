@@ -1,0 +1,75 @@
+﻿<div class="q-column-list" ng-class="{'panel panel-default': embedded}">
+
+    <div ng-class="{'panel-body': embedded}">
+
+        <div  class="columns" ui-sortable="listOpts" ng-model="board.columns">
+
+            <div ng-repeat="column in board.columns | orderBy:'priority'" class="q-column-list-item" ng-init="showTasks = true">
+                <div class="input-group">
+                    <span class="input-group-addon handle"><i class="glyphicon glyphicon-move"></i></span>
+                    <input type="text" class="form-control" ng-model="column.name" readonly>
+                    <div class="input-group-btn">
+                        <a href="#/board/{{ board.id }}/column/{{ column.id }}"
+                            class="btn btn-primary"
+                            title="display the column">
+                            <span class="glyphicon glyphicon-new-window"></span>
+                        </a>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li>
+                                <a href="javascript:" ng-click="showQuickInfo = !showQuickInfo" title="hide/show quick info">
+                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                    <span ng-show="showQuickInfo">Hide details</span>
+                                    <span ng-show="!showQuickInfo">Show details</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:" ng-click="showTasks = !showTasks" title="hide/show tasks">
+                                    <span class="glyphicon glyphicon-tasks"></span>
+                                    <span ng-show="showTasks">Hide tasks</span>
+                                    <span ng-show="!showTasks">Show tasks</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:" ng-click="removeColumn(board, column)" title="remove the column">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <span class="">Remove</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ng-show="showQuickInfo" class="panel panel-default">
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Name</dt>
+                            <dd>{{ column.name }}</dd>
+                            <dt>Description</dt>
+                            <dd>{{ column.description }}</dd>
+                            <dt>Created on</dt>
+                            <dd>{{ column.createdOn }}</dd>
+                            <dt>Updated on</dt>
+                            <dd>{{ column.updatedOn }}</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div ng-show="showTasks">
+                    <q-task-list embedded></q-task-list>
+                </div>
+            </div>
+
+        </div>
+
+        <hr/>
+
+        <form ng-submit="addColumn()" class="form form-inline q-column-list-item" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="transientColumn.name" placeholder="column's name">
+            </div>
+            <button class="btn btn-primary" type="submit">add</button>
+        </form>
+
+    </div>
+</div>

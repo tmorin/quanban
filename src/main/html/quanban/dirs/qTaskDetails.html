@@ -1,0 +1,54 @@
+﻿<div>
+
+    <div class="panel panel-default" ng-init="openPanel = true">
+        <div class="panel-heading" ng-click="openPanel = !openPanel">
+            Task's details
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-minus" ng-show="openPanel"></span>
+                <span class="glyphicon glyphicon-plus" ng-show="!openPanel"></span>
+            </div>
+        </div>
+        <div class="panel-body" ng-show="openPanel">
+
+            <form name="taskUpdateForm" role="form" ng-submit="updateTask()">
+
+                <div class="form-group">
+                    <label class="form-label" for="taskUpdateFormName">
+                        Name:
+                    </label>
+                    <input
+                        id="taskUpdateFormName"
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        ng-model="editable.name"
+                        placeholder="task's name"
+                        autocomplete="off"
+                        maxlength="128"
+                        required/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="taskUpdateFormDescription">
+                        Description:
+                    </label>
+                    <textarea
+                        id="taskUpdateFormDescription"
+                        class="form-control"
+                        name="description"
+                        ng-model="editable.description"
+                        placeholder="task's description"
+                        maxlength="2048">
+                    </textarea>
+                </div>
+
+                <button class="btn" type="button" ng-click="resetTask()">reset</button>
+                <button class="btn btn-primary" ng-disabled="taskUpdateForm.$invalid || taskUpdateForm.updating" type="submit">
+                    update
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,33 @@
+﻿@IMPORT url("../assets/bootstrap-3/css/bootstrap.css"); 
+
+body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.q .q-board-list,
+.q .q-column-list,
+.q .q-task-list {
+    margin: 0 0;
+    padding: 0 0 0 0;
+}
+
+.q .q-board-list .q-board-list-item,
+.q .q-column-list .q-column-list-item,
+.q .q-task-list .q-task-list-item {
+    margin: 0.5em 0;
+}
+
+.q .q-board-list .panel.panel-default,
+.q .q-column-list .panel.panel-default,
+.q .q-task-list .panel.panel-default {
+    margin: 0.5em 0 0 2em;
+    padding: 0 0 0 0;
+}
+
+.q .q-board-list .panel.panel-default .panel-body,
+.q .q-column-list .panel.panel-default .panel-body,
+.q .q-task-list .panel.panel-default .panel-body {
+    margin: 0.5em 1em;
+    padding: 0 0;
+}

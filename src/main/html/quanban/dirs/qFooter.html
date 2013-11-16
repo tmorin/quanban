@@ -1,0 +1,16 @@
+﻿<footer class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <ol class="breadcrumb">
+                <li ng-show="settings"><a href="#/home" title="goto to boards">Boards</a>
+                </li>
+                <li ng-show="board"><a href="#/board/{{ board.id }}" title="{{ getBoardTooltip(board) }}">{{ board.name }}</a>
+                </li>
+                <li ng-show="column"><a href="#/board/{{ board.id }}/column/{{ column.id }}" title="{{ getColumnTooltip(column) }}">{{ column.name }}</a>
+                </li>
+                <li ng-show="task"><a href="#/board/{{ board.id }}/column/{{ column.id }}/task/{{ task.id }}" title="{{ getTaskTooltip(column) }}">{{ task.name }}</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</footer>
