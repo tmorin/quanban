@@ -1,0 +1,34 @@
+﻿<content>
+
+    <section class="container">
+
+        <div class="jumbotron">
+            <h1>Qu<small>(ick q)</small>anban</h1>
+            <p>Welcome to quanban!</p>
+        </div>
+
+        <div class="alert alert-info">
+            <strong>hey!</strong>
+            Before to start you have to choose which providers you would like to use.
+        </div>
+
+        <form name="providersFrom" ng-submit="updateProvider()">
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="settingsProvider.provider" name="provider" value="localStorage">
+                    Local storage, your boards will be stored locally and could not be shared between devices.
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input disabled="disabled" type="radio" ng-model="settingsProvider.provider" name="provider" value="dropboxApi">
+                    Dropbox API, your boards will by stored into the dropbox cloud and will be synchornized between your devices.
+                </label>
+            </div>
+            <button class="btn" type="button" ng-click="resetProvider()">reset</button>
+            <button class="btn btn-primary" type="submit">ok</button>
+        </form>
+
+    </section>
+
+</content>

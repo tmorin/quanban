@@ -1,0 +1,76 @@
+﻿<div class="q-task-list" ng-class="{'panel panel-default': embedded}">
+
+    <div ng-class="{'panel-body': embedded}">
+
+        <div class="tasks" ui-sortable="listOpts" ng-model="column.tasks">
+
+            <div ng-repeat="task in column.tasks | orderBy:'priority'" class="q-task-list-item" ng-init="showQuickInfo = false">
+                <div class="input-group">
+                    <span class="input-group-addon handle"><i class="glyphicon glyphicon-move"></i></span>
+                    <input type="text" class="form-control" ng-model="task.name" readonly>
+                    <div class="input-group-btn">
+                        <a href="#/board/{{ board.id }}/column/{{ column.id }}/task/{{ task.id }}"
+                            class="btn btn-primary"
+                            title="display the task">
+                            <span class="glyphicon glyphicon-new-window"></span>
+                        </a>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li>
+                                <a href="javascript:" ng-click="showQuickInfo = !showQuickInfo" title="hide/show quick info">
+                                    <span class="glyphicon glyphicon-question-sign"></span>
+                                    <span ng-show="showQuickInfo">Hide details</span>
+                                    <span ng-show="!showQuickInfo">Show details</span>
+                                </a>
+                            </li>
+                            <li ng-hide="isFirstColumn(board, column)">
+                                <a href="javascript:" ng-click="moveTask(board, column, task, -1)" title="move the task in the previous column">
+                                    <span class="glyphicon glyphicon-arrow-up"></span>
+                                    Move to {{ getPreviousColumn(board, column).name }}
+                                </a>
+                            </li>
+                            <li ng-hide="isLastColumn(board, column)">
+                                <a href="javascript:" ng-click="moveTask(board, column, task, 1)" title="move the task in the next column">
+                                    <span class="glyphicon glyphicon-arrow-down"></span>
+                                    Move to {{ getNextColumn(board, column).name }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:" ng-click="removeTask(board, column, task)" title="remove the task">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <span class="">Remove</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ng-show="showQuickInfo" class="panel panel-default">
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Name</dt>
+                            <dd>{{ task.name }}</dd>
+                            <dt>Description</dt>
+                            <dd>{{ task.description }}</dd>
+                            <dt>Created on</dt>
+                            <dd>{{ task.createdOn }}</dd>
+                            <dt>Updated on</dt>
+                            <dd>{{ task.updatedOn }}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr/>
+        <form ng-submit="addTask()" class="form form-inline q-task-list-item" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="transientTask.name" placeholder="task's name">
+            </div>
+            <button class="btn btn-primary" type="submit">add</button>
+        </form>
+
+    </div>
+</div>

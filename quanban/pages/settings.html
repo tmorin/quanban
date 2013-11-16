@@ -1,0 +1,53 @@
+﻿<content>
+    <q-header></q-header>
+
+    <section class="container">
+
+        <q-messages></q-messages>
+
+        <fieldset>
+            <legend>Default provider</legend>
+            <form name="providersFrom" ng-submit="updateProvider()">
+                <div class="alert alert-info">
+                    There you can which provider will be used by default.
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" ng-model="settingsProvider.provider" name="provider" value="localStorage">
+                        Local storage, your boards will be stored locally and could not be shared between devices.
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input disabled="disabled" type="radio" ng-model="settingsProvider.provider" name="provider" value="dropboxApi">
+                        Dropbox API, your boards will by stored into the dropbox cloud and will be synchornized between your devices.
+                    </label>
+                </div>
+                <button class="btn" type="button" ng-click="resetProvider()">reset</button>
+                <button class="btn btn-primary" type="submit">update</button>
+            </form>
+        </fieldset>
+
+        <br>
+
+        <fieldset ng-show="hasLocalStorage">
+            <legend>LocalStorage</legend>
+            <div class="list-group">
+                <a href="javascript:" class="list-group-item" ng-click="clearLocalStorageData()">Clear all data</a>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <fieldset ng-show="backupAndRestoreAvailable">
+            <legend>Backup and restore</legend>
+            <div class="list-group">
+                <a href="javascript:" class="list-group-item" ng-click="backupBoards()">Backup boards</a>
+                <a href="javascript:" class="list-group-item" ng-click="restoreBoards()">Restore boards</a>
+            </div>
+        </fieldset>
+
+    </section>
+
+    <q-footer></q-footer>
+</content>

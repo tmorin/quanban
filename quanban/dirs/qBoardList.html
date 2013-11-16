@@ -1,0 +1,59 @@
+﻿<div class="q-board-list" ng-class="{'panel panel-default': embedded}">
+
+    <div ng-class="{'panel-body': embedded}">
+
+        <div ng-repeat="board in boards | orderBy:'name'" class="q-board-list-item" >
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="board.name" readonly>
+                <div class="input-group-btn">
+                    <a href="#/board/{{ board.id }}"
+                        class="btn btn-primary"
+                        title="display the board">
+                        <span class="glyphicon glyphicon-new-window"></span>
+                    </a>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li>
+                            <a href="javascript:" ng-click="showQuickInfo = !showQuickInfo" title="hide/show quick info">
+                                <span class="glyphicon glyphicon-question-sign"></span>
+                                <span ng-show="showQuickInfo">Hide details</span>
+                                <span ng-show="!showQuickInfo">Show details</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:" ng-click="removeBoard(board)" title="remove the board">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <span class="">Remove</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-show="showQuickInfo" class="panel panel-default">
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>Name</dt>
+                        <dd>{{ board.name }}</dd>
+                        <dt>Description</dt>
+                        <dd>{{ board.description }}</dd>
+                        <dt>Created on</dt>
+                        <dd>{{ board.createdOn }}</dd>
+                        <dt>Updated on</dt>
+                        <dd>{{ board.updatedOn }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+        <form ng-submit="addBoard()" class="form form-inline q-board-list-item" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="transientBoard.name" placeholder="board's name">
+            </div>
+            <button class="btn btn-primary" type="submit">add</button>
+        </form>
+
+    </div>
+</div>

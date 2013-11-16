@@ -1,0 +1,52 @@
+﻿<div>
+
+    <div class="panel panel-default" ng-init="openPanel = false">
+        <div class="panel-heading" ng-click="openPanel = !openPanel">
+            Board's details
+            <div class="pull-right">
+                <span class="glyphicon glyphicon-minus" ng-show="openPanel"></span>
+                <span class="glyphicon glyphicon-plus" ng-show="!openPanel"></span>
+            </div>
+        </div>
+        <div class="panel-body" ng-show="openPanel">
+
+            <form name="boardUpdateForm" role="form" ng-submit="updateBoard()">
+
+                <div class="form-group">
+                    <label class="form-label" for="boardUpdateFormName">
+                        Name:
+                    </label>
+                    <input
+                        id="boardUpdateFormName"
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        ng-model="editable.name"
+                        placeholder="board's name"
+                        autocomplete="off"
+                        maxlength="128"
+                        required/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="boardUpdateFormDescription">
+                        Description:
+                    </label>
+                    <textarea
+                        id="boardUpdateFormDescription"
+                        class="form-control"
+                        name="description"
+                        ng-model="editable.description"
+                        placeholder="board's description"
+                        maxlength="2048">
+                    </textarea>
+                </div>
+
+                <button class="btn" type="button" ng-click="resetTask()">reset</button>
+                <button class="btn btn-primary" ng-disabled="boardUpdateForm.$invalid" type="submit" ng->update</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
